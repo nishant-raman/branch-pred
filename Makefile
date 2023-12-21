@@ -33,6 +33,11 @@ exec: sim
 	mkdir -p output
 	./run.sh
 
+# rule for parsing results
+parse: exec
+	echo type,trace,m1,m2,n,k,hash,mpr > re.csv
+	python3 parse.py
+
 # type "make clean" to remove all .o files plus the sim binary
 clean:
 	rm -f *.o sim
@@ -41,3 +46,6 @@ clean:
 clobber:
 	rm -f *.o
 
+# remove all output text files
+cleanout:
+	rm -f output/*.txt
